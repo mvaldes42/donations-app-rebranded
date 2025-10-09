@@ -1,13 +1,14 @@
-import { DataTypes, Sequelize } from 'sequelize'
+import { DataTypes } from 'sequelize'
 
-export default function Donation(sequelize: Sequelize) {
-  const Donation = sequelize.define(
+export default function Donation(sequelize: any) {
+  var Donation = sequelize.define(
     'donation',
     {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
+        allowNull: false,
         primaryKey: true,
-        autoIncrement: true
+        defaultValue: DataTypes.UUIDV4
       },
       firstName: {
         type: DataTypes.STRING,
@@ -33,26 +34,24 @@ export default function Donation(sequelize: Sequelize) {
       companyName: {
         type: DataTypes.STRING,
         allowNull: true
-      },
-      createdAt: {
-        allowNull: false,
-        type: DataTypes.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: DataTypes.DATE
-      },
-      deletedAt: {
-        allowNull: true,
-        type: DataTypes.DATE
       }
     },
     {
+      sequelize,
       freezeTableName: true,
-      tableName: 'donation',
-      paranoid: true
+      modelName: 'donation',
+      paranoid: true,
+      timestamps: true
     }
   )
+
+  Donation.associate = (models: any) => {
+    models.donation.hasMany(models.transaction, {
+      foreignKey: 'donationId',
+      as: 'transactions',
+      targetKey: 'id'
+    })
+  }
 
   return Donation
 }

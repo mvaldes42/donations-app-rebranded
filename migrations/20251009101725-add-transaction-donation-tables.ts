@@ -4,9 +4,10 @@ module.exports = {
   up: async function(queryInterface, DataTypes) {
     await queryInterface.createTable('transaction', {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         primaryKey: true,
-        autoIncrement: true
+        allowNull: false,
+        defaultValue: DataTypes.UUIDV4
       },
       type: {
         type: DataTypes.STRING,
@@ -20,7 +21,7 @@ module.exports = {
         defaultValue: 0
       },
       donationId: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         allowNull: false,
         references: {
           model: 'donation',
@@ -42,9 +43,10 @@ module.exports = {
     })
     await queryInterface.createTable('donation', {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         primaryKey: true,
-        autoIncrement: true
+        allowNull: false,
+        defaultValue: DataTypes.UUIDV4
       },
       firstName: {
         type: DataTypes.STRING,

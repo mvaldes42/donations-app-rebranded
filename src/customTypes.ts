@@ -1,5 +1,5 @@
 export interface DonationType {
-  id: number
+  id: string
   firstName: string
   lastName: string
   amount: number
@@ -10,9 +10,10 @@ export interface DonationType {
 }
 
 export interface TransactionType {
-  id: number
+  id: string
   type: string
   refundedAmount: number
-  donationId: number
+  donationId: string
+  donation: DonationType
   createdAt: string
 }

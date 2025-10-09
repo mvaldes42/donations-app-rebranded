@@ -1,51 +1,49 @@
-import { DataTypes, Sequelize } from 'sequelize'
+import { DataTypes } from 'sequelize'
 
-export default function Transaction(sequelize: Sequelize) {
-  const Transaction = sequelize.define(
+export default function Transaction(sequelize: any) {
+  var Transaction = sequelize.define(
     'transaction',
     {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
+        allowNull: false,
         primaryKey: true,
-        autoIncrement: true
+        defaultValue: DataTypes.UUIDV4
       },
       type: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: 'Charge'
+        in: [['Charge', 'Manual']]
       },
       refundedAmount: {
         type: DataTypes.INTEGER,
-        allowNull: false,
-        defaultValue: 0
+        allowNull: true
       },
       donationId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
+        type: DataTypes.UUID,
+        allowNull: true,
+        reference: {
           model: 'donation',
           key: 'id'
-        }
-      },
-      createdAt: {
-        allowNull: false,
-        type: DataTypes.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: DataTypes.DATE
-      },
-      deletedAt: {
-        allowNull: true,
-        type: DataTypes.DATE
+        },
+        defaultValue: null
       }
     },
     {
+      sequelize,
       freezeTableName: true,
-      tableName: 'transaction',
-      paranoid: true
+      modelName: 'transaction',
+      paranoid: true,
+      timestamps: true
     }
   )
 
+  Transaction.associate = (models: any) => {
+    models.transaction.belongsTo(models.donation, {
+      foreignKey: 'donationId',
+      as: 'donation',
+      targetKey: 'id'
+    })
+  }
   return Transaction
 }
