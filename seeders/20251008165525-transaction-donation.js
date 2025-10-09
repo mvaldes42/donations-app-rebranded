@@ -1,4 +1,3 @@
-'use strict'
 const lastTransactions = require('./json/100-last-donations.json')
 
 module.exports = {
@@ -33,7 +32,7 @@ module.exports = {
           type: t.type,
           refundedAmount: t.refundedAmount,
           donationId: donation?.id,
-          createdAt: new Date(),
+          createdAt: new Date(donation.createdAtUtc),
           updatedAt: new Date()
         })
       }

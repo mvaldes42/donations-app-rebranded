@@ -10652,6 +10652,11 @@ systeminformation@^5.7:
   resolved "https://registry.npmjs.org/systeminformation/-/systeminformation-5.27.11.tgz#286c8eca3947cfde0da684221ee9afb2ae313441"
   integrity sha512-K3Lto/2m3K2twmKHdgx5B+0in9qhXK4YnoT9rIlgwN/4v7OV5c8IjbeAUkuky/6VzCQC7iKCAqi8rZathCdjHg==
 
+tachyons@^4.12.0:
+  version "4.12.0"
+  resolved "https://registry.npmjs.org/tachyons/-/tachyons-4.12.0.tgz#6fdfa8360927a46a1efd996a4dcc94f04bd31df0"
+  integrity sha512-2nA2IrYFy3raCM9fxJ2KODRGHVSZNTW3BR0YnlGsLUf1DA3pk3YfWZ/DdfbnZK6zLZS+jUenlUGJsKcA5fUiZg==
+
 tailwindcss@^3.0.2:
   version "3.4.18"
   resolved "https://registry.npmjs.org/tailwindcss/-/tailwindcss-3.4.18.tgz#9fa9650aace186644b608242f1e57d2d55593301"
