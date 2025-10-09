@@ -20,8 +20,14 @@ const types = generateModelTypes(models)
 
 let graphqlSchemaDeclaration: GraphqlSchemaDeclarationType = {}
 
-graphqlSchemaDeclaration.task = {
-  model: models.task,
+graphqlSchemaDeclaration.transaction = {
+  model: models.transaction,
+  actions: ['list', 'create', 'update', 'delete', 'count'],
+  subscriptions: ['create', 'update', 'delete']
+}
+
+graphqlSchemaDeclaration.donation = {
+  model: models.donation,
   actions: ['list', 'create', 'update', 'delete', 'count'],
   subscriptions: ['create', 'update', 'delete']
 }
