@@ -11,9 +11,18 @@ export const PAYMENT_TYPE_SELECT_OPTIONS = [
   { value: 'Manual', label: 'Manual' }
 ]
 
+export const PAGINATION_SELECT_OPTIONS = [
+  { value: 10, label: '10' },
+  { value: 20, label: '20' },
+  { value: 50, label: '50' },
+  { value: 100, label: '100' }
+]
+
 const initialState = {
   order: ORDER_SELECT_OPTIONS[0],
-  paymentType: PAYMENT_TYPE_SELECT_OPTIONS[0]
+  paymentType: PAYMENT_TYPE_SELECT_OPTIONS[0],
+  pagination: PAGINATION_SELECT_OPTIONS[0],
+  currentPage: { value: 1, label: '1' }
 }
 
 const transactionReducer = (state: typeof initialState, action: any) => {

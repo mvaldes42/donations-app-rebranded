@@ -24,6 +24,7 @@ const fetchTransactions = gql`
         createdAt
       }
     }
+    transactionsCount: transactionCount(where: $where)
   }
 `
 export function useGetTransactions({
