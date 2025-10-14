@@ -24,7 +24,8 @@ const initialState = {
   order: ORDER_SELECT_OPTIONS[0],
   paymentType: PAYMENT_TYPE_SELECT_OPTIONS[0],
   pagination: PAGINATION_SELECT_OPTIONS[0],
-  currentPage: { value: 1, label: '1' }
+  currentPage: { value: 1, label: '1' },
+  search: ''
 }
 
 const transactionReducer = (state: typeof initialState, action: any) => {

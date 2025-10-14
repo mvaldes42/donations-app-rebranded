@@ -10,7 +10,12 @@ export function TransactionPage() {
   const { data, loading, error, refetch } = useGetTransactions({
     order: state.order.value,
     where: {
-      type: state.paymentType.value
+      type: state.paymentType.value,
+      donation: {
+        firstName: {
+          like: `%${state.search}%`
+        }
+      }
     },
     limit: state.pagination.value,
     offset: state.pagination.value * (state.currentPage.value - 1)

@@ -11,7 +11,10 @@ import {
   generateModelTypes,
   generateApolloServer
 } from 'graphql-sequelize-generator'
-import { GraphqlSchemaDeclarationType } from 'graphql-sequelize-generator/types'
+import {
+  GraphqlSchemaDeclarationType,
+  ListAfterHook
+} from 'graphql-sequelize-generator/types'
 import { PubSub } from 'graphql-subscriptions'
 
 import models from '../models'
@@ -22,13 +25,30 @@ let graphqlSchemaDeclaration: GraphqlSchemaDeclarationType = {}
 
 graphqlSchemaDeclaration.transaction = {
   model: models.transaction,
-  actions: ['list', 'create', 'update', 'delete', 'count'],
-  subscriptions: ['create', 'update', 'delete']
+  actions: ['list', 'count'],
+  subscriptions: ['create', 'update', 'delete'],
+  list: {
+    before: (findOptions: any) => {
+      if (findOptions.where.donation.firstName) {
+        findOptions.include = [
+          {
+            model: models.donation,
+            as: 'donation',
+            where: {
+              firstName: findOptions.where.donation.firstName
+            }
+          }
+        ]
+        delete findOptions.where.donation
+      }
+      return findOptions
+    }
+  }
 }
 
 graphqlSchemaDeclaration.donation = {
   model: models.donation,
-  actions: ['list', 'create', 'update', 'delete', 'count'],
+  actions: ['list', 'count'],
   subscriptions: ['create', 'update', 'delete']
 }
 

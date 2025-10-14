@@ -26,6 +26,12 @@ export function TransactionHeader({
 
   return (
     <div className="flex flex-row pa2" style={{ gap: 8 }}>
+      <input
+        type="text"
+        placeholder="Search by donation first name"
+        value={state.search}
+        onChange={e => dispatch({ payload: { search: e.target.value } })}
+      />
       <Select
         options={ORDER_SELECT_OPTIONS}
         value={state.order}
