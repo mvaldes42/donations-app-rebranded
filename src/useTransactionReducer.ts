@@ -2,7 +2,9 @@ import { useReducer } from 'react'
 
 export const ORDER_SELECT_OPTIONS = [
   { value: 'reverse:createdAt', label: 'DoneAt descending' },
-  { value: 'createdAt', label: 'DoneAt ascending' }
+  { value: 'createdAt', label: 'DoneAt ascending' },
+  { value: 'donation.amount', label: 'Amount ascending' },
+  { value: 'reverse:donation.amount', label: 'Amount descending' }
 ]
 
 export const PAYMENT_TYPE_SELECT_OPTIONS = [
